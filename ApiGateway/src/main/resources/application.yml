@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: ApiGateway
+
+  config:
+    import:
+      - configserver:http://192.168.0.106:8085
+
+  cloud:
+    gateway:
+      #   discovery:
+      # locator:
+      #   enabled: true
+      #   lower-case-service-id: true
+      routes:
+        - id: userservice
+          uri: lb://userservice
+          predicates:
+            - Path=/users/**
+
+        - id: RATINGSERVICE
+          uri: lb://RATINGSERVICE
+          predicates:
+            - Path=/ratings/**
+
+        - id: hotelservice
+          uri: lb://hotelservice
+          predicates:
+            - Path=/hotels/**
+
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#   client:
+#     fetch-registry: true
+#     register-with-eureka: true
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 8765

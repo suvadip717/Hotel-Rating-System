@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: RatingService
+  data:
+    mongodb:
+      uri: mongodb+srv://destrokalis:Des2024tro@cluster0.ioxhi28.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: ratingDB
+      auto-index-creation: true
+
+  config:
+    import:
+      - configserver:http://192.168.0.106:8085
+# eureka:
+#   instance:
+#     prefer-ip-address: true
+#   client:
+#     fetch-registry: true
+#     register-with-eureka: true
+#     service-url:
+#       defaultZone: http://localhost:8761/eureka
